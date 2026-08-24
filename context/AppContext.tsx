@@ -16,7 +16,7 @@ export const AppContext = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [appState, setAppState] = useState<AppState>({
-    status: "loading",
+    status: "autenticated",
   });
   return (
     <AppContext.Provider value={{ appState, setAppState }}>

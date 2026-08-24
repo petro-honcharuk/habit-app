@@ -3,7 +3,7 @@ import { useAppContext } from "@/hooks/useAppContext";
 import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 
-export default function Index() {
+export default function Home() {
   const { appState, setAppState } = useAppContext();
 
   return (
