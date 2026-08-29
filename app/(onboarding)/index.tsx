@@ -1,12 +1,16 @@
 import { useAppContext } from "@/hooks/useAppContext";
+import { useTheme } from "@/hooks/useThemeContext";
+import { ThemeColors } from "@/types/theme";
 import { useRouter } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function FirstOnboarding() {
+  const { colors, setTheme } = useTheme();
+  const styles = createStyles(colors);
   const router = useRouter();
-  const { appState, setAppState } = useAppContext();
+  const { setAppState } = useAppContext();
   function finishOnboarding() {
     setAppState({
       status: "unauthenticated",
@@ -36,41 +40,43 @@ export default function FirstOnboarding() {
   );
 }
 
-const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  mainText: {
-    fontSize: 25,
-    color: "black",
-    fontWeight: "bold",
-  },
-  descrText: {
-    fontSize: 16,
-    color: "#937d7d",
-    marginHorizontal: 15,
-    marginTop: 10,
-  },
-  btnContainer: {
-    marginBottom: 5,
-  },
-  btnStyle: {
-    marginHorizontal: "2%",
-    marginVertical: 5,
-    backgroundColor: "blue",
-    height: 40,
-    width: "96%",
-    justifyContent: "center",
-    borderRadius: 11,
-  },
-  btnText: {
-    fontSize: 16,
-    color: "white",
-    alignSelf: "center",
-  },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    main: {
+      flex: 1,
+      backgroundColor: colors.background,
+    },
+    content: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    mainText: {
+      fontSize: 25,
+      color: colors.textPrimary,
+      fontWeight: "bold",
+    },
+    descrText: {
+      fontSize: 16,
+      marginHorizontal: 15,
+      marginTop: 10,
+      color: colors.textSecondary,
+    },
+    btnContainer: {
+      marginBottom: 5,
+    },
+    btnStyle: {
+      marginHorizontal: "2%",
+      marginVertical: 5,
+      backgroundColor: colors.accent,
+      height: 40,
+      width: "96%",
+      justifyContent: "center",
+      borderRadius: 11,
+    },
+    btnText: {
+      fontSize: 16,
+      color: colors.textPrimary,
+      alignSelf: "center",
+    },
+  });

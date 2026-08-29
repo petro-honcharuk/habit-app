@@ -1,4 +1,5 @@
 import { AppProvider } from "@/context/AppContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 import { useAppContext } from "@/hooks/useAppContext";
 import { Stack } from "expo-router";
 import { Text, View } from "react-native";
@@ -18,17 +19,19 @@ function RootNavigator() {
     );
   }
   return (
-    <Stack>
-      <Stack.Protected guard={isOnboarding}>
-        <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
-      </Stack.Protected>
-      <Stack.Protected guard={isUnauthenticated}>
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      </Stack.Protected>
-      <Stack.Protected guard={isAuthenticated}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack.Protected>
-    </Stack>
+    <ThemeProvider>
+      <Stack>
+        <Stack.Protected guard={isOnboarding}>
+          <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+        </Stack.Protected>
+        <Stack.Protected guard={isUnauthenticated}>
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        </Stack.Protected>
+        <Stack.Protected guard={isAuthenticated}>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack.Protected>
+      </Stack>
+    </ThemeProvider>
   );
 }
 
