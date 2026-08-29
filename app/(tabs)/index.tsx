@@ -1,10 +1,15 @@
 import { habitsArray } from "@/data/habitData";
 import { useAppContext } from "@/hooks/useAppContext";
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { Button, FlatList, StyleSheet, Text, View } from "react-native";
 
 export default function Home() {
   const { appState, setAppState } = useAppContext();
+  function goToLogin() {
+    setAppState({
+      status: "unautenticated",
+    });
+  }
 
   return (
     <View style={styles.main}>
@@ -13,6 +18,7 @@ export default function Home() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <Text>{item.name}</Text>}
       />
+      <Button title="Go to login" onPress={goToLogin} />
     </View>
   );
 }
@@ -20,5 +26,6 @@ export default function Home() {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    marginTop: 30,
   },
 });

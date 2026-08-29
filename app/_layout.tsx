@@ -6,6 +6,10 @@ import { Text, View } from "react-native";
 function RootNavigator() {
   const { appState } = useAppContext();
 
+  const isOnboarding = appState.status === "onboarding";
+  const isUnauthenticated = appState.status === "unauthenticated";
+  const isAuthenticated = appState.status === "autenticated";
+
   if (appState.status === "loading") {
     return (
       <View>
@@ -13,21 +17,19 @@ function RootNavigator() {
       </View>
     );
   }
-  if (appState.status === "autenticated") {
-    return (
-      <View>
-        <Text>Autenticated...</Text>
-      </View>
-    );
-  }
-  if (appState.status === "onboarding") {
-    return (
-      <View>
-        <Text>Onboarding</Text>
-      </View>
-    );
-  }
-  return <Stack />;
+  return (
+    <Stack>
+      <Stack.Protected guard={isOnboarding}>
+        <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+      </Stack.Protected>
+      <Stack.Protected guard={isUnauthenticated}>
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      </Stack.Protected>
+      <Stack.Protected guard={isAuthenticated}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack.Protected>
+    </Stack>
+  );
 }
 
 export default function RootLayout() {

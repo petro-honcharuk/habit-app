@@ -1,5 +1,5 @@
 export type AppState =
   | { status: "loading" }
   | { status: "onboarding" }
-  | { status: "unautenticated" }
+  | { status: "unauthenticated" }
   | { status: "autenticated" };
