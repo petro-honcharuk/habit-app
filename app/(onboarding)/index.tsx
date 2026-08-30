@@ -7,7 +7,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function FirstOnboarding() {
-  const { colors, setTheme } = useTheme();
+  const { colors } = useTheme();
   const styles = createStyles(colors);
   const router = useRouter();
   const { setAppState } = useAppContext();
@@ -50,6 +50,8 @@ const createStyles = (colors: ThemeColors) =>
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
+      width: "96%",
+      marginHorizontal: "2%",
     },
     mainText: {
       fontSize: 25,
@@ -64,13 +66,14 @@ const createStyles = (colors: ThemeColors) =>
     },
     btnContainer: {
       marginBottom: 5,
+      width: "96%",
+      marginHorizontal: "2%",
     },
     btnStyle: {
-      marginHorizontal: "2%",
       marginVertical: 5,
       backgroundColor: colors.accent,
       height: 40,
-      width: "96%",
+
       justifyContent: "center",
       borderRadius: 11,
     },
