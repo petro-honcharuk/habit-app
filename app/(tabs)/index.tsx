@@ -7,7 +7,7 @@ export default function Home() {
   const { appState, setAppState } = useAppContext();
   function goToLogin() {
     setAppState({
-      status: "unautenticated",
+      status: "unauthenticated",
     });
   }
 
