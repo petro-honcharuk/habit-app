@@ -1,5 +1,4 @@
 import { useAppContext } from "@/hooks/useAppContext";
-import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function Login() {
@@ -14,7 +13,7 @@ export default function Login() {
   }
   return (
     <View style={styles.main}>
-      <Text>login</Text>
+      <Text>Hello login</Text>
       <Button title="Go to onboarding" onPress={goToOnboarding} />
       <Button title="Go to tabs" onPress={goToAutentification} />
     </View>
